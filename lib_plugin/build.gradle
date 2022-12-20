@@ -1,0 +1,50 @@
+// 引入 groovy 和 java 插件
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url 'http://depot.sankuai.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.google.com' }
+        jcenter()
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url "http://mvn.dianpingoa.com/android-nova"
+    }
+    maven {
+        url 'http://depot.sankuai.com/nexus/content/groups/public/'
+    }
+    maven { url 'https://maven.google.com' }
+}
+
+dependencies {
+
+    implementation gradleApi()     //gradle sdk
+    implementation localGroovy()   //groovy sdk
+
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.ow2.asm:asm:7.0'
+    implementation 'org.ow2.asm:asm-commons:6.0'
+}
+
+
+
+tasks.withType(GroovyCompile) {
+    options.encoding = "UTF-8"
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.version = '0.0.1' // 配置插件版本号
+        pom.artifactId = 'myplugin' // 配置插件标识
+        pom.groupId = 'com.zy.plugin' // 配置插件组织
+    }
+}
+

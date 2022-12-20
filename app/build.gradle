@@ -28,13 +28,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
 
-task myTask {
-    println 'myTask in configuration'
-    doLast {
-        println 'myTask in run'
-    }
-}
-
 
 /*
 gradle.addBuildListener(new BuildListener() {
